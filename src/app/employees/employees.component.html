@@ -1,3 +1,53 @@
-<p>
-  employees works!
-</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-4">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Employee</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name<br />(job title)</th>
+        <th scope="col">Age</th>
+        <th scope="col">Username</th>
+        <th scope="col">Hire Date</th>
+        <th scope="col">Country</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employees | async">
+        <th scope="row">{{ employee.name }}</th>
+        <td>{{ employee.dateOfBirth }}</td>
+        <td>{{ employee.userName }}</td>
+        <td>{{ employee.hireDate }}</td>
+        <td>{{ employee.country }}</td>
+        <td>
+          <i><a href="/edit-employee">I1   </a></i>
+          <i><a href="/view-employee">I2   </a></i>
+          <i><a href="/erase-employee">I3   </a></i>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="gotoNewEmployee()"
+    >
+      + Add new employee
+    </button>
+  </div>
+
+</div>
