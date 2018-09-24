@@ -5,6 +5,8 @@ import {AppState} from '../app.state';
 import {CountriesService} from '../countries.service';
 
 import * as EmployeeActions from '../actions/employee.actions';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-new-employee',
@@ -13,8 +15,10 @@ import * as EmployeeActions from '../actions/employee.actions';
 })
 export class NewEmployeeComponent implements OnInit {
 
+  employeeForm: FormGroup;
   countries: any[];
-  dateOfBirth;
+  dateOfBirth: NgbDateStruct;
+  hireDate: NgbDateStruct;
 
   constructor(
     private store: Store<AppState>,
@@ -22,34 +26,9 @@ export class NewEmployeeComponent implements OnInit {
     private countryService: CountriesService
   ) {}
 
-  addEmployee(
-    name,
-    userName,
-    dateOfBirth,
-    hireDate,
-    country,
-    status,
-    area,
-    jobTitle,
-    tipRate,
-    ) {
-      this.store.dispatch(new EmployeeActions.AddEmployee({
-        name,
-        userName,
-        dateOfBirth,
-        hireDate,
-        country,
-        status,
-        area,
-        jobTitle,
-        tipRate,
-      }));
-
+  onSubmit() {
+    this.store.dispatch(new EmployeeActions.AddEmployee(this.employeeForm.value));
     this.router.navigate(['/']);
-  }
-
-  showMe() {
-    console.log(this.countries);
   }
 
   ngOnInit() {
@@ -57,6 +36,20 @@ export class NewEmployeeComponent implements OnInit {
       .subscribe(countries => {
         this.countries = countries.map(country => country['name']);
       });
+
+    this.employeeForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      dateOfBirth: new FormControl('', [Validators.required]),
+      country: new FormControl({}, [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
+      hireDate: new FormControl('', [Validators.required]),
+      status: new FormControl(false),
+      area: new FormControl('Services'),
+      jobTitle: new FormControl({}, [Validators.required]),
+      tipRate: new FormControl('', [Validators.required]),
+    });
   }
+
+  get name() { return this.employeeForm.get('name'); }
 
 }

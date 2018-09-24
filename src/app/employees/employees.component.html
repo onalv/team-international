@@ -26,9 +26,9 @@
       <tbody>
       <tr *ngFor="let employee of employees | async">
         <th scope="row">{{ employee.name }}</th>
-        <td>{{ employee.dateOfBirth }}</td>
+        <td>{{ employee.dateOfBirth['year'] }}</td>
         <td>{{ employee.userName }}</td>
-        <td>{{ employee.hireDate }}</td>
+        <td>{{ employee.hireDate | json }}</td>
         <td>{{ employee.country }}</td>
         <td>
           <i><a href="/edit-employee"><img src="../../assets/edit.png" alt="Edit Employee"></a></i>

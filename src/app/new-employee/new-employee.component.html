@@ -1,77 +1,104 @@
 <div class="container">
   <h2 class="mb-5">New Employee</h2>
-  <div class="row">
-
-    <div class="col-6">
-      <div class="form-group row">
-        <label for="name" class="col-3">Name</label>
-        <div class="col-9">
-          <input id="name" type="text" class="form-control" placeholder="name" #name>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="form-group row">
-        <label for="userName" class="col-3">Username</label>
-        <div class="col-9">
-          <input id="userName" type="text" class="form-control" placeholder="Username" #userName>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="form-group row">
-        <label for="dateOfBirth" class="col-3">Date of Birth</label>
-        <div class="input-group col-9">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
-                 name="dateOfBirth" [(ngModel)]="dateOfBirth" ngbDatepicker #d="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="name" class="col-3">Name</label>
+          <div class="col-9">
+            <input id="name" type="text" class="form-control" placeholder="name" formControlName="name" required>
+            <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+              Please choose a name.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-6">
-      <div class="form-group row">
-        <label for="jobTitle" class="col-3">Job title</label>
-        <div class="col-9">
-          <select name="jobTitle" id="jobTitle" class="form-control">
-            <option value="Manager">Manager</option>
-            <option value="Host">Host</option>
-            <option value="Tuttofare">Tuttofare</option>
-            <option value="Waitress">Waitress</option>
-            <option value="Dining room manager">Dining room manager</option>
-          </select>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="userName" class="col-3">Username</label>
+          <div class="col-9">
+            <input id="userName" type="text" class="form-control" placeholder="Username" formControlName="userName" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="dateOfBirth" class="col-3">Date of Birth</label>
+          <div class="input-group col-9">
+            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+                   ngbDatepicker #dateOfBirth="ngbDatepicker" formControlName="dateOfBirth" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dateOfBirth.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="country" class="col-3">Country</label>
+          <div class="col-9">
+            <select id="country" class="form-control" formControlName="country" required>
+              <option value="" disabled selected hidden>Country</option>
+              <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="area" class="col-3">Area</label>
+          <div id="area" class="btn-group col-9" role="group" aria-label="Area">
+            <button type="button" class="btn btn-info">Services</button>
+            <button type="button" class="btn btn-light">Kitchen</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="jobTitle" class="col-3">Job title</label>
+          <div class="col-9">
+            <select id="jobTitle" class="form-control" formControlName="jobTitle" required>
+              <option value="Manager">Manager</option>
+              <option value="Host">Host</option>
+              <option value="Tuttofare">Tuttofare</option>
+              <option value="Waitress">Waitress</option>
+              <option value="Dining room manager">Dining room manager</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="hireDate" class="col-3">Hire date</label>
+          <div class="input-group col-9">
+            <input id="hireDate" class="form-control" placeholder="yyyy-mm-dd"
+                   ngbDatepicker #dateHireData="ngbDatepicker" formControlName="hireDate" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dateHireData.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="tipRate" class="col-3">Tip rate</label>
+          <div class="col-9">
+            <input id="tipRate" type="text" class="form-control" placeholder="Tip rate" formControlName="tipRate" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="status" formControlName="status">
+          <label class="custom-control-label col-3" for="status"><strong>Status</strong></label>
         </div>
       </div>
     </div>
-    <div class="col-6">
-      <div class="form-group row">
-        <label for="country" class="col-3">Country</label>
-        <div class="col-9">
-          <select name="country" id="country" class="form-control" #country>
-            <option value="" disabled selected hidden>Country</option>
-            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <input type="text" class="form-control" placeholder="Hire Date" #hireDate>
-  <input type="text" class="form-control" placeholder="Area" #area>
-  <input type="text" class="form-control" placeholder="Status" #status>
-  <input type="text" class="form-control" placeholder="Job Title" #jobTitle>
-  <input type="text" class="form-control" placeholder="Tip Rate" #tipRate>
-
-
-  <button
-    class="btn btn-primary"
-    (click)="addEmployee(name.value, userName.value, dateOfBirth.value, hireDate.value, country.value,
-                          status.value, area.value, jobTitle.value, tipRate.value)"
-  >
-    Add Employee
-  </button>
-
-  <button class="btn btn-secondary btn-block mt-3" (click)="showMe()">Show me!</button>
+    <button
+      class="btn btn-primary mt-5"
+      [disabled]="!employeeForm.valid"
+    >
+      Add Employee
+    </button>
+  </form>
 </div>

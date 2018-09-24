@@ -21,7 +21,6 @@ export class CountriesService {
   getCountries (): Observable<any[]> {
     return this.http.get<any[]>(this.countriesUrl)
       .pipe(
-        tap(countries => console.log(countries)),
         catchError(this.handleError('getHeroes', []))
       );
   }
