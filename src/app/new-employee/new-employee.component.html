@@ -1,17 +1,69 @@
 <div class="container">
+  <h2 class="mb-5">New Employee</h2>
+  <div class="row">
 
-  <input type="text" class="form-control" placeholder="name" #name>
-  <input type="text" class="form-control" placeholder="nick name" #userName>
-  <input type="text" class="form-control" placeholder="Date Of Birth" #dateOfBirth>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="name" class="col-3">Name</label>
+        <div class="col-9">
+          <input id="name" type="text" class="form-control" placeholder="name" #name>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="userName" class="col-3">Username</label>
+        <div class="col-9">
+          <input id="userName" type="text" class="form-control" placeholder="Username" #userName>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="dateOfBirth" class="col-3">Date of Birth</label>
+        <div class="input-group col-9">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+                 name="dateOfBirth" [(ngModel)]="dateOfBirth" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="jobTitle" class="col-3">Job title</label>
+        <div class="col-9">
+          <select name="jobTitle" id="jobTitle" class="form-control">
+            <option value="Manager">Manager</option>
+            <option value="Host">Host</option>
+            <option value="Tuttofare">Tuttofare</option>
+            <option value="Waitress">Waitress</option>
+            <option value="Dining room manager">Dining room manager</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="country" class="col-3">Country</label>
+        <div class="col-9">
+          <select name="country" id="country" class="form-control" #country>
+            <option value="" disabled selected hidden>Country</option>
+            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <input type="text" class="form-control" placeholder="Hire Date" #hireDate>
   <input type="text" class="form-control" placeholder="Area" #area>
   <input type="text" class="form-control" placeholder="Status" #status>
   <input type="text" class="form-control" placeholder="Job Title" #jobTitle>
   <input type="text" class="form-control" placeholder="Tip Rate" #tipRate>
-  <select name="country" id="country" class="form-control mb-3" #country>
-    <option value="" disabled selected hidden>Select your option</option>
-    <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
-  </select>
+
 
   <button
     class="btn btn-primary"

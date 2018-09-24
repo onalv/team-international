@@ -14,6 +14,7 @@ import * as EmployeeActions from '../actions/employee.actions';
 export class NewEmployeeComponent implements OnInit {
 
   countries: any[];
+  dateOfBirth;
 
   constructor(
     private store: Store<AppState>,

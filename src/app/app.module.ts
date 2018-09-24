@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 // @vendors
 import {StoreModule} from '@ngrx/store';
+import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 // @Components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,10 +27,12 @@ import { reducer } from './reducers/employee.reducer';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     StoreModule.forRoot({
       employee: reducer
-    })
+    }),
+    NgbDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
