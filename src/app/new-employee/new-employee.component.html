@@ -1,3 +1,25 @@
-<p>
-  new-employee works!
-</p>
+<div class="container">
+
+  <input type="text" class="form-control" placeholder="name" #name>
+  <input type="text" class="form-control" placeholder="nick name" #userName>
+  <input type="text" class="form-control" placeholder="Date Of Birth" #dateOfBirth>
+  <input type="text" class="form-control" placeholder="Hire Date" #hireDate>
+  <input type="text" class="form-control" placeholder="Area" #area>
+  <input type="text" class="form-control" placeholder="Status" #status>
+  <input type="text" class="form-control" placeholder="Job Title" #jobTitle>
+  <input type="text" class="form-control" placeholder="Tip Rate" #tipRate>
+  <select name="country" id="country" class="form-control mb-3" #country>
+    <option value="" disabled selected hidden>Select your option</option>
+    <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+  </select>
+
+  <button
+    class="btn btn-primary"
+    (click)="addEmployee(name.value, userName.value, dateOfBirth.value, hireDate.value, country.value,
+                          status.value, area.value, jobTitle.value, tipRate.value)"
+  >
+    Add Employee
+  </button>
+
+  <button class="btn btn-secondary btn-block mt-3" (click)="showMe()">Show me!</button>
+</div>
