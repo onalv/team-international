@@ -1,3 +1,87 @@
-<p>
-  view-employee works!
-</p>
+<div class="container">
+  <h4 class="mb-5">Viewing: Juan Perez</h4>
+  <form >
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="name" class="col-3">Name</label>
+          <div class="col-9">
+            <input id="name" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="userName" class="col-3">Username</label>
+          <div class="col-9">
+            <input id="userName" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="dateOfBirth" class="col-3">Date of birth</label>
+          <div class="col-9">
+            <input id="dateOfBirth" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="country" class="col-3">Country</label>
+          <div class="col-9">
+            <input id="country" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="area" class="col-3">Area</label>
+          <div id="area" class="btn-group col-9" role="group" aria-label="Area">
+            <button type="button" class="btn" [ngClass]="{'btn-info': area === 'services', 'btn-light': area === 'kitchen'}" disabled>
+              Services
+            </button>
+            <button type="button" class="btn" [ngClass]="{'btn-info': area === 'kitchen', 'btn-light': area === 'services'}" disabled>
+              Kitchen
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="jobTitle" class="col-3">Job Title</label>
+          <div class="col-9">
+            <input id="jobTitle" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="hireDate" class="col-3">Hire date</label>
+          <div class="col-9">
+            <input id="hireDate" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="tipRate" class="col-3">Tip rate</label>
+          <div class="col-9">
+            <input id="tipRate" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="status" disabled>
+          <label class="custom-control-label col-3" for="status"><strong>Status</strong></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mt-5">
+      <button class="btn btn-light" (click)="gotoHomepage()">
+        Back
+      </button>
+    </div>
+  </form>
+</div>
