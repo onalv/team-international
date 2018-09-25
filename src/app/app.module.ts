@@ -14,6 +14,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 // @reducer
 import { reducer } from './reducers/employee.reducer';
+import { JobTitleComponent } from './job-title/job-title.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { reducer } from './reducers/employee.reducer';
     EmployeesComponent,
     NewEmployeeComponent,
     EditEmployeeComponent,
-    ViewEmployeeComponent
+    ViewEmployeeComponent,
+    JobTitleComponent
   ],
   imports: [
     BrowserModule,

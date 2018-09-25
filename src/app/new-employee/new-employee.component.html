@@ -59,28 +59,13 @@
         <div class="form-group row">
           <label for="area" class="col-3">Area</label>
           <div id="area" class="btn-group col-9" role="group" aria-label="Area">
-            <button type="button" class="btn" (click)="services = true" [ngClass]="{'btn-info': services, 'btn-light': !services}">Services</button>
-            <button type="button" class="btn" (click)="services = false" [ngClass]="{'btn-info': !services, 'btn-light': services}">Kitchen</button>
+            <button type="button" class="btn" (click)="handleServiceChange('services')" [ngClass]="{'btn-info': area === 'services', 'btn-light': area === 'kitchen'}">Services</button>
+            <button type="button" class="btn" (click)="handleServiceChange('kitchen')" [ngClass]="{'btn-info': area === 'kitchen', 'btn-light': area === 'services'}">Kitchen</button>
           </div>
         </div>
       </div>
       <div class="col-6">
-        <div class="form-group row">
-          <label for="jobTitle" class="col-3">Job title</label>
-          <div class="col-9">
-            <select id="jobTitle" class="form-control" formControlName="jobTitle" required>
-              <option value="" disabled selected hidden>Select and option</option>
-              <option value="Manager">Manager</option>
-              <option value="Host">Host</option>
-              <option value="Tuttofare">Tuttofare</option>
-              <option value="Waitress">Waitress</option>
-              <option value="Dining room manager">Dining room manager</option>
-            </select>
-            <div class="alert alert-danger mt-1" *ngIf="jobTitle.invalid && (jobTitle.dirty && jobTitle.touched)">
-              Please choose a job title.
-            </div>
-          </div>
-        </div>
+        <app-job-title [area]="area"></app-job-title>
       </div>
       <div class="col-6">
         <div class="form-group row">
@@ -117,13 +102,13 @@
         </div>
       </div>
     </div>
-    <button
-      class="btn btn-primary mt-5"
-      [disabled]="!employeeForm.valid"
-    >
-      Add Employee
-    </button>
+    <div class="col-6 mt-5">
+      <button class="btn btn-light" (click)="gotoHomepage()">
+        Back
+      </button>
+      <button class="btn btn-primary ml-5" type="submit" [disabled]="!employeeForm.valid">
+        Save
+      </button>
+    </div>
   </form>
 </div>
-
-<button (click)="showMe(name.invalid)">Show</button>
