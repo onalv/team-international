@@ -15,6 +15,7 @@ import {AppState} from '../app.state';
 export class EmployeesComponent implements OnInit {
 
   employees: Observable<EmployeeModel[]>;
+  currentYear = new Date().getFullYear();
 
   gotoNewEmployee() {
     this.router.navigate(['/add-employee']);

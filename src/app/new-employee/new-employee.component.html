@@ -19,7 +19,7 @@
           <div class="col-9">
             <input id="userName" type="text" class="form-control" placeholder="Username" formControlName="userName" required>
             <div class="alert alert-danger mt-1" *ngIf="userName.invalid && (userName.dirty && userName.touched)">
-              Please choose a Username.
+              Please choose a username.
             </div>
           </div>
         </div>
@@ -30,6 +30,7 @@
           <div class="col-9">
             <div class="input-group">
               <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+                     [minDate]="{'year': 1940, 'month': 1, 'day': 1}" [maxDate]="{'year': 2010, 'month': 1, 'day': 1}"
                      ngbDatepicker #date1="ngbDatepicker" formControlName="dateOfBirth" required>
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="date1.toggle()" type="button"></button>
@@ -73,6 +74,7 @@
           <div class="col-9">
             <div class="input-group">
               <input id="hireDate" class="form-control" placeholder="yyyy-mm-dd"
+                     [minDate]="{'year': 1970, 'month': 1, 'day': 1}" [maxDate]="{'year': 2018, 'month': 12, 'day': 31}"
                      ngbDatepicker #date2="ngbDatepicker" formControlName="hireDate" required>
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="date2.toggle()" type="button"></button>
