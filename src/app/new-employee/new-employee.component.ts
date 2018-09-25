@@ -17,8 +17,9 @@ export class NewEmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
   countries: any[];
-  dateOfBirth: NgbDateStruct;
-  hireDate: NgbDateStruct;
+  services = true; // true for area "Services" and false when area is Kitchen
+  // dateOfBirth: NgbDateStruct;
+  // hireDate: NgbDateStruct;
 
   constructor(
     private store: Store<AppState>,
@@ -29,6 +30,10 @@ export class NewEmployeeComponent implements OnInit {
   onSubmit() {
     this.store.dispatch(new EmployeeActions.AddEmployee(this.employeeForm.value));
     this.router.navigate(['/']);
+  }
+
+  showMe(el) {
+    console.log(el);
   }
 
   ngOnInit() {
@@ -51,5 +56,13 @@ export class NewEmployeeComponent implements OnInit {
   }
 
   get name() { return this.employeeForm.get('name'); }
+  get dateOfBirth() { return this.employeeForm.get('dateOfBirth'); }
+  get country() { return this.employeeForm.get('country'); }
+  get userName() { return this.employeeForm.get('userName'); }
+  get hireDate() { return this.employeeForm.get('hireDate'); }
+  get status() { return this.employeeForm.get('status'); }
+  get area() { return this.employeeForm.get('area'); }
+  get jobTitle() { return this.employeeForm.get('jobTitle'); }
+  get tipRate() { return this.employeeForm.get('tipRate'); }
 
 }
