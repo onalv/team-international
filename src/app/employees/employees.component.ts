@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
-import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 
 import {EmployeeModel} from '../models/employee.model';
-import {AppState} from '../app.state';
+import {EmployeeService} from '../employee.service';
 
 @Component({
   selector: 'app-employees',
@@ -21,11 +20,10 @@ export class EmployeesComponent implements OnInit {
     this.router.navigate(['/add-employee']);
   }
 
-  constructor(private store: Store<AppState>, private router: Router) {
-    this.employees =  store.select('employee');
-  }
+  constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit() {
+    this.employees = this.employeeService.getEmployees();
   }
 
 }

@@ -9,7 +9,7 @@ import {EditEmployeeComponent} from './edit-employee/edit-employee.component';
 const routes: Routes = [
   { path: 'add-employee', component: NewEmployeeComponent },
   { path: 'edit-employee', component: EditEmployeeComponent },
-  { path: 'view-employee', component: ViewEmployeeComponent },
+  { path: 'view-employee/:employee_id', component: ViewEmployeeComponent },
   { path: 'employees', component: EmployeesComponent },
   { path: '', redirectTo: '/employees', pathMatch: 'full' }
 ];

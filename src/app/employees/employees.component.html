@@ -15,6 +15,7 @@
     <table class="table">
       <thead class="thead-dark">
       <tr>
+        <th>Id</th>
         <th scope="col">Name<br />(job title)</th>
         <th scope="col">Age</th>
         <th scope="col">Username</th>
@@ -25,6 +26,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let employee of employees | async">
+        <td>{{ employee.id }}</td>
         <td scope="row">{{ employee.name }}<br />{{ employee.jobTitle }}</td>
         <td>{{ currentYear - employee.dateOfBirth['year'] }}</td>
         <td>{{ employee.userName }}</td>
@@ -32,7 +34,7 @@
         <td>{{ employee.country }}</td>
         <td>
           <i><a href="/edit-employee"><img src="../../assets/edit.png" alt="Edit Employee"></a></i>
-          <i><a href="/view-employee"><img src="../../assets/view.png" alt="View Employee"></a></i>
+          <i><a routerLink="/view-employee/{{ employee.id }}"><img src="../../assets/view.png" alt="View Employee"></a></i>
           <i><a href="/erase-employee"><img src="../../assets/trash.png" alt="Delete Employee"></a></i>
         </td>
       </tr>

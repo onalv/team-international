@@ -1,12 +1,15 @@
 <div class="container">
-  <h4 class="mb-5">Viewing: Juan Perez</h4>
-  <form >
+  <h2 class="mb-5">New Employee</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="row">
       <div class="col-6">
         <div class="form-group row">
           <label for="name" class="col-3">Name</label>
           <div class="col-9">
-            <input id="name" type="text" class="form-control" disabled>
+            <input id="name" type="text" class="form-control" placeholder="name" formControlName="name" required>
+            <div class="alert alert-danger mt-1" *ngIf="name.invalid && (name.dirty && name.touched)">
+              Please choose a name.
+            </div>
           </div>
         </div>
       </div>
@@ -14,15 +17,28 @@
         <div class="form-group row">
           <label for="userName" class="col-3">Username</label>
           <div class="col-9">
-            <input id="userName" type="text" class="form-control" disabled>
+            <input id="userName" type="text" class="form-control" placeholder="Username" formControlName="userName" required>
+            <div class="alert alert-danger mt-1" *ngIf="userName.invalid && (userName.dirty && userName.touched)">
+              Please choose a username.
+            </div>
           </div>
         </div>
       </div>
       <div class="col-6">
         <div class="form-group row">
-          <label for="dateOfBirth" class="col-3">Date of birth</label>
+          <label for="dateOfBirth" class="col-3">Date of Birth</label>
           <div class="col-9">
-            <input id="dateOfBirth" type="text" class="form-control" disabled>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+                     [minDate]="{'year': 1940, 'month': 1, 'day': 1}" [maxDate]="{'year': 2010, 'month': 1, 'day': 1}"
+                     ngbDatepicker #date1="ngbDatepicker" formControlName="dateOfBirth" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="date1.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div class="alert alert-danger mt-1" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty && dateOfBirth.touched)">
+              Please choose a date of birth.
+            </div>
           </div>
         </div>
       </div>
@@ -30,7 +46,13 @@
         <div class="form-group row">
           <label for="country" class="col-3">Country</label>
           <div class="col-9">
-            <input id="country" type="text" class="form-control" disabled>
+            <select id="country" class="form-control" formControlName="country" required>
+              <option value="" disabled selected hidden>Country</option>
+              <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+            </select>
+            <div class="alert alert-danger mt-1" *ngIf="country.invalid && (country.dirty && country.touched)">
+              Please choose a country.
+            </div>
           </div>
         </div>
       </div>
@@ -38,28 +60,29 @@
         <div class="form-group row">
           <label for="area" class="col-3">Area</label>
           <div id="area" class="btn-group col-9" role="group" aria-label="Area">
-            <button type="button" class="btn" [ngClass]="{'btn-info': area === 'services', 'btn-light': area === 'kitchen'}" disabled>
-              Services
-            </button>
-            <button type="button" class="btn" [ngClass]="{'btn-info': area === 'kitchen', 'btn-light': area === 'services'}" disabled>
-              Kitchen
-            </button>
+            <button type="button" class="btn" (click)="handleServiceChange('services')" [ngClass]="{'btn-info': area === 'services', 'btn-light': area === 'kitchen'}">Services</button>
+            <button type="button" class="btn" (click)="handleServiceChange('kitchen')" [ngClass]="{'btn-info': area === 'kitchen', 'btn-light': area === 'services'}">Kitchen</button>
           </div>
         </div>
       </div>
       <div class="col-6">
-        <div class="form-group row">
-          <label for="jobTitle" class="col-3">Job Title</label>
-          <div class="col-9">
-            <input id="jobTitle" type="text" class="form-control" disabled>
-          </div>
-        </div>
+        <app-job-title [area]="area"></app-job-title>
       </div>
       <div class="col-6">
         <div class="form-group row">
           <label for="hireDate" class="col-3">Hire date</label>
           <div class="col-9">
-            <input id="hireDate" type="text" class="form-control" disabled>
+            <div class="input-group">
+              <input id="hireDate" class="form-control" placeholder="yyyy-mm-dd"
+                     [minDate]="{'year': 1970, 'month': 1, 'day': 1}" [maxDate]="{'year': 2018, 'month': 12, 'day': 31}"
+                     ngbDatepicker #date2="ngbDatepicker" formControlName="hireDate" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="date2.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div class="alert alert-danger mt-1" *ngIf="hireDate.invalid && (hireDate.dirty && hireDate.touched)">
+              Please choose a hire date.
+            </div>
           </div>
         </div>
       </div>
@@ -67,13 +90,16 @@
         <div class="form-group row">
           <label for="tipRate" class="col-3">Tip rate</label>
           <div class="col-9">
-            <input id="tipRate" type="text" class="form-control" disabled>
+            <input id="tipRate" type="text" class="form-control" placeholder="Tip rate" formControlName="tipRate" required>
+            <div class="alert alert-danger mt-1" *ngIf="tipRate.invalid && (tipRate.dirty && tipRate.touched)">
+              Please choose a tip rate.
+            </div>
           </div>
         </div>
       </div>
       <div class="col-6">
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="status" disabled>
+          <input type="checkbox" class="custom-control-input" id="status" formControlName="status">
           <label class="custom-control-label col-3" for="status"><strong>Status</strong></label>
         </div>
       </div>
@@ -81,6 +107,9 @@
     <div class="col-6 mt-5">
       <button class="btn btn-light" (click)="gotoHomepage()">
         Back
+      </button>
+      <button class="btn btn-primary ml-5" type="submit" [disabled]="!employeeForm.valid">
+        Save
       </button>
     </div>
   </form>
