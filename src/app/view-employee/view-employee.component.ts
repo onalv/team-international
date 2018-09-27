@@ -45,29 +45,30 @@ export class ViewEmployeeComponent implements OnInit {
 
   getEmployee(): void {
     const id = +this.route.snapshot.paramMap.get('employee_id');
-    console.log(this.employeeService.getEmployee(id)['id']);
+    this.employee = this.employeeService.getEmployee(id);
+    console.log(this.employee);
   }
 
   ngOnInit() {
+    this.getEmployee();
     this.countryService.getCountries()
       .subscribe(countries => {
         this.countries = countries.map(country => country['name']);
       });
-
     this.employeeForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      dateOfBirth: new FormControl('', [Validators.required]),
-      country: new FormControl({}, [Validators.required]),
-      userName: new FormControl('', [Validators.required]),
-      hireDate: new FormControl('', [Validators.required]),
-      status: new FormControl(false),
-      // area: new FormControl('Services'),
-      // jobTitle: new FormControl({}, [Validators.required]),
-      tipRate: new FormControl('', [Validators.required]),
+      name: new FormControl(this.employee['name'], [Validators.required]),
+      dateOfBirth: new FormControl(this.employee['dateOfBirth'], [Validators.required]),
+      country: new FormControl(this.employee['country'], [Validators.required]),
+      userName: new FormControl(this.employee['userName'], [Validators.required]),
+      hireDate: new FormControl(this.employee['hireDate'], [Validators.required]),
+      status: new FormControl(this.employee['status']),
+      area: new FormControl(this.employee['area']),
+      jobTitle: new FormControl(this.employee['jobTitle'], [Validators.required]),
+      tipRate: new FormControl(this.employee['tipRate'], [Validators.required]),
     });
+    this.area = this.employee['area'];
 
-    this.getEmployee();
-
+    // this.employeeForm.patchValue({name: this.employee['name']});
   }
 
   get name() { return this.employeeForm.get('name'); }
@@ -77,7 +78,7 @@ export class ViewEmployeeComponent implements OnInit {
   get hireDate() { return this.employeeForm.get('hireDate'); }
   get status() { return this.employeeForm.get('status'); }
   // get area() { return this.employeeForm.get('area'); }
-  // get jobTitle() { return this.employeeForm.get('jobTitle'); }
+  get jobTitle() { return this.employeeForm.get('jobTitle'); }
   get tipRate() { return this.employeeForm.get('tipRate'); }
 
 }

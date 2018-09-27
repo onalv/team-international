@@ -1,7 +1,7 @@
 <div class="form-group row">
   <label for="jobTitle" class="col-3">Job title</label>
   <div class="col-9">
-    <select id="jobTitle" class="form-control" [formControl]="jobTitle" required>
+    <select id="jobTitle" class="form-control" [formControl]="jobTitle" required (change)="changeSelect(jobTitle.value)">
       <option value="">Select and option</option>
       <option [value]="title" *ngFor="let title of jobTitles">{{ title }}</option>
     </select>

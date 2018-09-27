@@ -17,7 +17,7 @@ export class NewEmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
   countries: any[];
-  area = 'kitchen'; // true for area "Services" and false when area is Kitchen
+  // area = 'kitchen'; true for area "Services" and false when area is Kitchen
   // dateOfBirth: NgbDateStruct;
   // hireDate: NgbDateStruct;
 
@@ -29,6 +29,7 @@ export class NewEmployeeComponent implements OnInit {
 
   onSubmit() {
     this.store.dispatch(new EmployeeActions.AddEmployee(this.employeeForm.value));
+    console.log(this.employeeForm.value);
     this.router.navigate(['/']);
   }
 
@@ -37,7 +38,11 @@ export class NewEmployeeComponent implements OnInit {
   }
 
   handleServiceChange(area) {
-    this.area = area;
+    this.employeeForm.patchValue({area: area});
+  }
+
+  updateJobTitle(jobTitle: string) {
+    this.employeeForm.patchValue({jobTitle: jobTitle});
   }
 
   ngOnInit() {
@@ -53,8 +58,8 @@ export class NewEmployeeComponent implements OnInit {
       userName: new FormControl('', [Validators.required]),
       hireDate: new FormControl('', [Validators.required]),
       status: new FormControl(false),
-      // area: new FormControl('Services'),
-      // jobTitle: new FormControl({}, [Validators.required]),
+      area: new FormControl('services'),
+      jobTitle: new FormControl('', [Validators.required]),
       tipRate: new FormControl('', [Validators.required]),
     });
   }
@@ -65,8 +70,8 @@ export class NewEmployeeComponent implements OnInit {
   get userName() { return this.employeeForm.get('userName'); }
   get hireDate() { return this.employeeForm.get('hireDate'); }
   get status() { return this.employeeForm.get('status'); }
-  // get area() { return this.employeeForm.get('area'); }
-  // get jobTitle() { return this.employeeForm.get('jobTitle'); }
+  get area() { return this.employeeForm.get('area'); }
+  get jobTitle() { return this.employeeForm.get('jobTitle'); }
   get tipRate() { return this.employeeForm.get('tipRate'); }
 
 }
