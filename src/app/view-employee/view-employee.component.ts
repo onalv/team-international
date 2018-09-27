@@ -18,7 +18,7 @@ export class ViewEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   employee: EmployeeModel;
   countries: any[];
-  area = 'kitchen';
+  // area = 'kitchen';
   // dateOfBirth: NgbDateStruct;
   // hireDate: NgbDateStruct;
 
@@ -35,12 +35,17 @@ export class ViewEmployeeComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  updateJobTitle(jobTitle: string) {
+    this.employeeForm.patchValue({jobTitle: jobTitle});
+  }
+
   gotoHomepage() {
     this.router.navigate(['/']);
   }
 
   handleServiceChange(area) {
-    this.area = area;
+    this.employeeForm.patchValue({area: area});
+    this.employeeForm.patchValue({jobTitle: ''});
   }
 
   getEmployee(): void {
@@ -66,7 +71,7 @@ export class ViewEmployeeComponent implements OnInit {
       jobTitle: new FormControl(this.employee['jobTitle'], [Validators.required]),
       tipRate: new FormControl(this.employee['tipRate'], [Validators.required]),
     });
-    this.area = this.employee['area'];
+    // this.area = this.employee['area'];
 
     // this.employeeForm.patchValue({name: this.employee['name']});
   }
@@ -77,7 +82,7 @@ export class ViewEmployeeComponent implements OnInit {
   get userName() { return this.employeeForm.get('userName'); }
   get hireDate() { return this.employeeForm.get('hireDate'); }
   get status() { return this.employeeForm.get('status'); }
-  // get area() { return this.employeeForm.get('area'); }
+  get area() { return this.employeeForm.get('area'); }
   get jobTitle() { return this.employeeForm.get('jobTitle'); }
   get tipRate() { return this.employeeForm.get('tipRate'); }
 

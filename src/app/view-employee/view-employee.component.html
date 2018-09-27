@@ -60,13 +60,13 @@
         <div class="form-group row">
           <label for="area" class="col-3">Area</label>
           <div id="area" class="btn-group col-9" role="group" aria-label="Area">
-            <button type="button" class="btn" (click)="handleServiceChange('services')" [ngClass]="{'btn-info': area === 'services', 'btn-light': area === 'kitchen'}">Services</button>
-            <button type="button" class="btn" (click)="handleServiceChange('kitchen')" [ngClass]="{'btn-info': area === 'kitchen', 'btn-light': area === 'services'}">Kitchen</button>
+            <button type="button" class="btn" (click)="handleServiceChange('services')" [ngClass]="{'btn-info': area.value === 'services', 'btn-light': area.value === 'kitchen'}">Services</button>
+            <button type="button" class="btn" (click)="handleServiceChange('kitchen')" [ngClass]="{'btn-info': area.value === 'kitchen', 'btn-light': area.value === 'services'}">Kitchen</button>
           </div>
         </div>
       </div>
       <div class="col-6">
-        <app-job-title [area]="area" [jobTitleSelected]="jobTitle.value"></app-job-title>
+        <app-job-title [area]="area.value" [jobTitleSelected]="jobTitle.value" (inputChange)="updateJobTitle($event)"></app-job-title>
       </div>
       <div class="col-6">
         <div class="form-group row">

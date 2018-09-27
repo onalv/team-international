@@ -2,7 +2,7 @@
   <label for="jobTitle" class="col-3">Job title</label>
   <div class="col-9">
     <select id="jobTitle" class="form-control" [formControl]="jobTitle" required (change)="changeSelect(jobTitle.value)">
-      <option value="">Select and option</option>
+      <!--<option value="">Select and option</option>-->
       <option [value]="title" *ngFor="let title of jobTitles">{{ title }}</option>
     </select>
     <div class="alert alert-danger mt-1" *ngIf="!jobTitle.value && (jobTitle.dirty && jobTitle.touched)">
@@ -10,3 +10,4 @@
     </div>
   </div>
 </div>
+ga
