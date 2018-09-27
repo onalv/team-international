@@ -19,6 +19,11 @@ export function reducer(state: EmployeeModel[] = [initialState], action: Employe
     case EmployeeActions.ADD_EMPLOYEE:
       const newEmployee = Object.assign({}, {id: state.length + 1}, action.payload)
       return [...state, newEmployee];
+    case EmployeeActions.MODIFY_EMPLOYEE:
+      const oldEmployee = state.find(employee => employee.id === action.payload.id);
+      const modifiedEmployee = Object.assign({}, oldEmployee, action.payload);
+      const newState = state.filter(employee => employee.id !== action.payload.id);
+      return [...newState, modifiedEmployee];
     default:
       return state;
   }

@@ -18,6 +18,7 @@ export class ViewEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   employee: EmployeeModel;
   countries: any[];
+  idEmployee: number;
   // area = 'kitchen';
   // dateOfBirth: NgbDateStruct;
   // hireDate: NgbDateStruct;
@@ -31,8 +32,10 @@ export class ViewEmployeeComponent implements OnInit {
   ) {}
 
   onSubmit() {
-    this.store.dispatch(new EmployeeActions.AddEmployee(this.employeeForm.value));
+    const newEmployee = Object.assign({}, this.employeeForm.value, {id: this.idEmployee});
+    this.store.dispatch(new EmployeeActions.ModifyEmployee(newEmployee));
     this.router.navigate(['/']);
+    console.log(newEmployee);
   }
 
   updateJobTitle(jobTitle: string) {
@@ -49,8 +52,8 @@ export class ViewEmployeeComponent implements OnInit {
   }
 
   getEmployee(): void {
-    const id = +this.route.snapshot.paramMap.get('employee_id');
-    this.employee = this.employeeService.getEmployee(id);
+    this.idEmployee = +this.route.snapshot.paramMap.get('employee_id');
+    this.employee = this.employeeService.getEmployee(this.idEmployee);
     console.log(this.employee);
   }
 
