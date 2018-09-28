@@ -6,7 +6,7 @@
         <div class="form-group row">
           <label for="name" class="col-3">Name</label>
           <div class="col-9">
-            <input id="name" type="text" class="form-control" placeholder="name" formControlName="name" required>
+            <input [disabled]="viewMode" id="name" type="text" class="form-control" placeholder="name" formControlName="name" required>
             <div class="alert alert-danger mt-1" *ngIf="name.invalid && (name.dirty && name.touched)">
               Please choose a name.
             </div>

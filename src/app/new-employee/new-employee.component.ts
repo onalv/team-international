@@ -5,6 +5,7 @@ import {AppState} from '../app.state';
 import {CountriesService} from '../countries.service';
 
 import * as EmployeeActions from '../actions/employee.actions';
+import * as EmployeeIdActions from '../actions/employeeId.actions';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -17,6 +18,7 @@ export class NewEmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
   countries: any[];
+  newEmployeeId: number;
   // area = 'kitchen'; true for area "Services" and false when area is Kitchen
   // dateOfBirth: NgbDateStruct;
   // hireDate: NgbDateStruct;
@@ -28,8 +30,13 @@ export class NewEmployeeComponent implements OnInit {
   ) {}
 
   onSubmit() {
-    this.store.dispatch(new EmployeeActions.AddEmployee(this.employeeForm.value));
-    console.log(this.employeeForm.value);
+    this.store.dispatch(new EmployeeIdActions.IncrementId());
+    this.store.select('employeeId').subscribe(employee => this.newEmployeeId = employee);
+
+    const newEmployee = Object.assign({}, this.employeeForm.value, {id: this.newEmployeeId});
+    this.store.dispatch(new EmployeeActions.AddEmployee(newEmployee));
+    // console.log(this.employeeForm.value);
+    // console.log(this.newEmployeeId);
     this.router.navigate(['/']);
   }
 

@@ -5,6 +5,10 @@ import {Observable} from 'rxjs';
 
 import {EmployeeModel} from '../models/employee.model';
 import {EmployeeService} from '../employee.service';
+import {Store} from '@ngrx/store';
+import {AppState} from '../app.state';
+
+import * as EmployeeActions from '../actions/employee.actions';
 
 @Component({
   selector: 'app-employees',
@@ -20,10 +24,18 @@ export class EmployeesComponent implements OnInit {
     this.router.navigate(['/add-employee']);
   }
 
-  constructor(private employeeService: EmployeeService, private router: Router) { }
+  constructor(
+    private store: Store<AppState>,
+    private employeeService: EmployeeService,
+    private router: Router) { }
 
   ngOnInit() {
     this.employees = this.employeeService.getEmployees();
+  }
+
+  deleteEmployee(id) {
+    console.log(typeof id);
+    this.store.dispatch(new EmployeeActions.DeleteEmployee(id));
   }
 
 }

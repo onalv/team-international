@@ -7,6 +7,7 @@ import {CountriesService} from '../countries.service';
 import * as EmployeeActions from '../actions/employee.actions';
 import {EmployeeModel} from '../models/employee.model';
 import {EmployeeService} from '../employee.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-employee',
@@ -19,6 +20,7 @@ export class ViewEmployeeComponent implements OnInit {
   employee: EmployeeModel;
   countries: any[];
   idEmployee: number;
+  viewMode: boolean;
   // area = 'kitchen';
   // dateOfBirth: NgbDateStruct;
   // hireDate: NgbDateStruct;
@@ -75,6 +77,9 @@ export class ViewEmployeeComponent implements OnInit {
       tipRate: new FormControl(this.employee['tipRate'], [Validators.required]),
     });
     // this.area = this.employee['area'];
+    this.route
+      .queryParamMap
+      .pipe(map(params => this.viewMode = !!params.get('viewmode') || false));
 
     // this.employeeForm.patchValue({name: this.employee['name']});
   }

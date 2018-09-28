@@ -12,9 +12,10 @@ import { EmployeesComponent } from './employees/employees.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
+import { JobTitleComponent } from './job-title/job-title.component';
 // @reducer
 import { reducer } from './reducers/employee.reducer';
-import { JobTitleComponent } from './job-title/job-title.component';
+import {reducerId} from './reducers/employeeId.reducer';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { JobTitleComponent } from './job-title/job-title.component';
     FormsModule,
     AppRoutingModule,
     StoreModule.forRoot({
-      employee: reducer
+      employee: reducer,
+      employeeId: reducerId
     }),
     NgbDatepickerModule
   ],

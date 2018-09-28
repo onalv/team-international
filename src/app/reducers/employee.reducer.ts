@@ -17,13 +17,14 @@ const initialState: EmployeeModel = {
 export function reducer(state: EmployeeModel[] = [initialState], action: EmployeeActions.Actions) {
   switch (action.type) {
     case EmployeeActions.ADD_EMPLOYEE:
-      const newEmployee = Object.assign({}, {id: state.length + 1}, action.payload)
-      return [...state, newEmployee];
+      return [...state, action.payload];
     case EmployeeActions.MODIFY_EMPLOYEE:
       const oldEmployee = state.find(employee => employee.id === action.payload.id);
       const modifiedEmployee = Object.assign({}, oldEmployee, action.payload);
-      const newState = state.filter(employee => employee.id !== action.payload.id);
-      return [...newState, modifiedEmployee];
+      const newStateModify = state.filter(employee => employee.id !== action.payload.id);
+      return [...newStateModify, modifiedEmployee];
+    case EmployeeActions.DELETE_EMPLOYEE:
+      return state.filter(employee => employee.id !== action.payload);
     default:
       return state;
   }
