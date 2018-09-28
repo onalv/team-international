@@ -20,7 +20,7 @@ export class ViewEmployeeComponent implements OnInit {
   employee: EmployeeModel;
   countries: any[];
   idEmployee: number;
-  viewMode: boolean;
+  viewMode: any;
   // area = 'kitchen';
   // dateOfBirth: NgbDateStruct;
   // hireDate: NgbDateStruct;
@@ -56,7 +56,6 @@ export class ViewEmployeeComponent implements OnInit {
   getEmployee(): void {
     this.idEmployee = +this.route.snapshot.paramMap.get('employee_id');
     this.employee = this.employeeService.getEmployee(this.idEmployee);
-    console.log(this.employee);
   }
 
   ngOnInit() {
@@ -65,23 +64,23 @@ export class ViewEmployeeComponent implements OnInit {
       .subscribe(countries => {
         this.countries = countries.map(country => country['name']);
       });
+    this.route
+      .queryParams.subscribe(params => this.viewMode = !!params['viewmode'] || false);
+    console.log(this.viewMode);
     this.employeeForm = new FormGroup({
-      name: new FormControl(this.employee['name'], [Validators.required]),
-      dateOfBirth: new FormControl(this.employee['dateOfBirth'], [Validators.required]),
-      country: new FormControl(this.employee['country'], [Validators.required]),
-      userName: new FormControl(this.employee['userName'], [Validators.required]),
-      hireDate: new FormControl(this.employee['hireDate'], [Validators.required]),
-      status: new FormControl(this.employee['status']),
-      area: new FormControl(this.employee['area']),
-      jobTitle: new FormControl(this.employee['jobTitle'], [Validators.required]),
-      tipRate: new FormControl(this.employee['tipRate'], [Validators.required]),
+      name: new FormControl({value: this.employee['name'], disabled: this.viewMode}, [Validators.required]),
+      dateOfBirth: new FormControl({value: this.employee['dateOfBirth'], disabled: this.viewMode}, [Validators.required]),
+      country: new FormControl({value: this.employee['country'], disabled: this.viewMode}, [Validators.required]),
+      userName: new FormControl({value: this.employee['userName'], disabled: this.viewMode}, [Validators.required]),
+      hireDate: new FormControl({value: this.employee['hireDate'], disabled: this.viewMode}, [Validators.required]),
+      status: new FormControl({value: this.employee['status'], disabled: this.viewMode}),
+      area: new FormControl({value: this.employee['area'], disabled: this.viewMode}),
+      jobTitle: new FormControl({value: this.employee['jobTitle'], disabled: this.viewMode}, [Validators.required]),
+      tipRate: new FormControl({value: this.employee['tipRate'], disabled: this.viewMode}, [Validators.required]),
     });
     // this.area = this.employee['area'];
-    this.route
-      .queryParamMap
-      .pipe(map(params => this.viewMode = !!params.get('viewmode') || false));
-
     // this.employeeForm.patchValue({name: this.employee['name']});
+
   }
 
   get name() { return this.employeeForm.get('name'); }

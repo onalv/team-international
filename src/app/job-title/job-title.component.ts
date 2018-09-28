@@ -10,6 +10,7 @@ export class JobTitleComponent implements OnInit, OnChanges {
 
   @Input() area: string;
   @Input() jobTitleSelected: string;
+  @Input() disabled: boolean;
   @Output() inputChange = new EventEmitter<string>();
   jobTitles: string[];
   jobTitle: FormControl;
@@ -17,7 +18,7 @@ export class JobTitleComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    this.jobTitle = new FormControl(this.jobTitleSelected, [Validators.required]);
+    this.jobTitle = new FormControl({value: this.jobTitleSelected, disabled: this.disabled}, [Validators.required]);
   }
 
   ngOnChanges() {
