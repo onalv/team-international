@@ -6,8 +6,9 @@ import {CountriesService} from '../../services/countries.service';
 
 import * as EmployeeActions from '../../actions/employee.actions';
 import * as EmployeeIdActions from '../../actions/employeeId.actions';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+// import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {DialogService} from '../../services/dialog.service';
 
 @Component({
   selector: 'app-new-employee',
@@ -26,7 +27,8 @@ export class NewEmployeeComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private countryService: CountriesService
+    private countryService: CountriesService,
+    public dialogService: DialogService
   ) {}
 
   onSubmit() {
