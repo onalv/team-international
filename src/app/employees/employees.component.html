@@ -15,7 +15,6 @@
     <table class="table">
       <thead class="thead-dark">
       <tr>
-        <th>Id</th>
         <th scope="col">Name<br />(job title)</th>
         <th scope="col">Age</th>
         <th scope="col">Username</th>
@@ -26,7 +25,6 @@
       </thead>
       <tbody>
       <tr *ngFor="let employee of employees | async">
-        <td>{{ employee.id }}</td>
         <td scope="row">{{ employee.name }}<br />{{ employee.jobTitle }}</td>
         <td>{{ currentYear - employee.dateOfBirth['year'] }}</td>
         <td>{{ employee.userName }}</td>
