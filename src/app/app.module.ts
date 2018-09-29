@@ -8,11 +8,10 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 // @Components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { EmployeesComponent } from './employees/employees.component';
-import { NewEmployeeComponent } from './new-employee/new-employee.component';
-import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
-import { ViewEmployeeComponent } from './view-employee/view-employee.component';
-import { JobTitleComponent } from './job-title/job-title.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { NewEmployeeComponent } from './components/new-employee/new-employee.component';
+import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
+import { JobTitleComponent } from './components/job-title/job-title.component';
 // @reducer
 import { reducer } from './reducers/employee.reducer';
 import {reducerId} from './reducers/employeeId.reducer';
@@ -22,7 +21,6 @@ import {reducerId} from './reducers/employeeId.reducer';
     AppComponent,
     EmployeesComponent,
     NewEmployeeComponent,
-    EditEmployeeComponent,
     ViewEmployeeComponent,
     JobTitleComponent
   ],

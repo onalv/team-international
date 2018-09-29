@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {AppState} from '../app.state';
-import {CountriesService} from '../countries.service';
-import * as EmployeeActions from '../actions/employee.actions';
-import {EmployeeModel} from '../models/employee.model';
-import {EmployeeService} from '../employee.service';
+import {AppState} from '../../app.state';
+import {CountriesService} from '../../services/countries.service';
+import * as EmployeeActions from '../../actions/employee.actions';
+import {EmployeeModel} from '../../models/employee.model';
+import {EmployeeService} from '../../services/employee.service';
 import {map} from 'rxjs/operators';
 
 @Component({

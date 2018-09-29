@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Router} from '@angular/router';
-import {AppState} from '../app.state';
-import {CountriesService} from '../countries.service';
+import {AppState} from '../../app.state';
+import {CountriesService} from '../../services/countries.service';
 
-import * as EmployeeActions from '../actions/employee.actions';
-import * as EmployeeIdActions from '../actions/employeeId.actions';
+import * as EmployeeActions from '../../actions/employee.actions';
+import * as EmployeeIdActions from '../../actions/employeeId.actions';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 

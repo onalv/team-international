@@ -3,12 +3,12 @@ import {Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
 
-import {EmployeeModel} from '../models/employee.model';
-import {EmployeeService} from '../employee.service';
+import {EmployeeModel} from '../../models/employee.model';
+import {EmployeeService} from '../../services/employee.service';
 import {Store} from '@ngrx/store';
-import {AppState} from '../app.state';
+import {AppState} from '../../app.state';
 
-import * as EmployeeActions from '../actions/employee.actions';
+import * as EmployeeActions from '../../actions/employee.actions';
 
 @Component({
   selector: 'app-employees',

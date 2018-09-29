@@ -32,13 +32,13 @@
         <td>{{ employee.country }}</td>
         <td>
           <i><a routerLink="/view-employee/{{ employee.id }}">
-            <img src="../../assets/edit.png" alt="Edit Employee">
+            <img src="../../../assets/edit.png" alt="Edit Employee">
           </a></i>
           <i><a routerLink="/view-employee/{{ employee.id }}" [queryParams]="{viewmode: true}">
-            <img src="../../assets/view.png" alt="View Employee">
+            <img src="../../../assets/view.png" alt="View Employee">
           </a></i>
           <i><a (click)="deleteEmployee(employee.id)">
-            <img src="../../assets/trash.png" alt="Delete Employee">
+            <img src="../../../assets/trash.png" alt="Delete Employee">
           </a></i>
         </td>
       </tr>

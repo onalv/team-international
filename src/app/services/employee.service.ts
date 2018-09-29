@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {EmployeeModel} from './models/employee.model';
+import {EmployeeModel} from '../models/employee.model';
 import {Observable, of} from 'rxjs';
-import {AppState} from './app.state';
+import {AppState} from '../app.state';
 import {Store} from '@ngrx/store';
 
 @Injectable({
