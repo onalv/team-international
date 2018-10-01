@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
+import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
+
+import {AppState} from '../../app.state';
+import * as EmployeeActions from '../../actions/employee.actions';
 
 import {EmployeeModel} from '../../models/employee.model';
 import {EmployeeService} from '../../services/employee.service';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../app.state';
-
-import * as EmployeeActions from '../../actions/employee.actions';
 
 @Component({
   selector: 'app-employees',
@@ -16,7 +16,6 @@ import * as EmployeeActions from '../../actions/employee.actions';
   styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit {
-
   employees: Observable<EmployeeModel[]>;
   currentYear = new Date().getFullYear();
 
@@ -34,7 +33,6 @@ export class EmployeesComponent implements OnInit {
   }
 
   deleteEmployee(id) {
-    console.log(typeof id);
     this.store.dispatch(new EmployeeActions.DeleteEmployee(id));
   }
 

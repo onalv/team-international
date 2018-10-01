@@ -7,7 +7,6 @@ import {CountriesService} from '../../services/countries.service';
 import * as EmployeeActions from '../../actions/employee.actions';
 import {EmployeeModel} from '../../models/employee.model';
 import {EmployeeService} from '../../services/employee.service';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-employee',
@@ -21,9 +20,6 @@ export class ViewEmployeeComponent implements OnInit {
   countries: any[];
   idEmployee: number;
   viewMode: any;
-  // area = 'kitchen';
-  // dateOfBirth: NgbDateStruct;
-  // hireDate: NgbDateStruct;
 
   constructor(
     private store: Store<AppState>,
@@ -36,8 +32,8 @@ export class ViewEmployeeComponent implements OnInit {
   onSubmit() {
     const newEmployee = Object.assign({}, this.employeeForm.value, {id: this.idEmployee});
     this.store.dispatch(new EmployeeActions.ModifyEmployee(newEmployee));
-    this.router.navigate(['/']);
-    console.log(newEmployee);
+
+    this.gotoHomepage();
   }
 
   updateJobTitle(jobTitle: string) {
@@ -66,7 +62,6 @@ export class ViewEmployeeComponent implements OnInit {
       });
     this.route
       .queryParams.subscribe(params => this.viewMode = !!params['viewmode'] || false);
-    console.log(this.viewMode);
     this.employeeForm = new FormGroup({
       name: new FormControl({value: this.employee['name'], disabled: this.viewMode}, [Validators.required]),
       dateOfBirth: new FormControl({value: this.employee['dateOfBirth'], disabled: this.viewMode}, [Validators.required]),
@@ -76,11 +71,8 @@ export class ViewEmployeeComponent implements OnInit {
       status: new FormControl({value: this.employee['status'], disabled: this.viewMode}),
       area: new FormControl({value: this.employee['area'], disabled: this.viewMode}),
       jobTitle: new FormControl({value: this.employee['jobTitle'], disabled: this.viewMode}, [Validators.required]),
-      tipRate: new FormControl({value: this.employee['tipRate'], disabled: this.viewMode}, [Validators.required]),
+      tipRate: new FormControl({value: this.employee['tipRate'], disabled: this.viewMode}),
     });
-    // this.area = this.employee['area'];
-    // this.employeeForm.patchValue({name: this.employee['name']});
-
   }
 
   get name() { return this.employeeForm.get('name'); }
@@ -92,5 +84,4 @@ export class ViewEmployeeComponent implements OnInit {
   get area() { return this.employeeForm.get('area'); }
   get jobTitle() { return this.employeeForm.get('jobTitle'); }
   get tipRate() { return this.employeeForm.get('tipRate'); }
-
 }

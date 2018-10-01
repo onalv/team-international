@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row">
     <div class="col-4">
       <div class="input-group mb-3">
@@ -10,12 +9,11 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <table class="table">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Name<br />(job title)</th>
+        <th scope="col">Name<br />( Job title )</th>
         <th scope="col">Age</th>
         <th scope="col">Username</th>
         <th scope="col">Hire Date</th>
@@ -25,7 +23,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let employee of employees | async">
-        <td scope="row">{{ employee.name }}<br />{{ employee.jobTitle }}</td>
+        <td scope="row">{{ employee.name }}<br />( {{ employee.jobTitle }} )</td>
         <td>{{ currentYear - employee.dateOfBirth['year'] }}</td>
         <td>{{ employee.userName }}</td>
         <td>{{ employee.hireDate['year'] }}/{{employee.hireDate['month']}}/{{employee.hireDate['day']}}</td>
@@ -45,7 +43,6 @@
       </tbody>
     </table>
   </div>
-
   <div class="row">
     <button
       type="button"
@@ -55,5 +52,4 @@
       + Add new employee
     </button>
   </div>
-
 </div>

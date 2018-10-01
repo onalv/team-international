@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
 import {Router} from '@angular/router';
-import {AppState} from '../../app.state';
-import {CountriesService} from '../../services/countries.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
+import {Store} from '@ngrx/store';
+
+import {AppState} from '../../app.state';
 import * as EmployeeActions from '../../actions/employee.actions';
 import * as EmployeeIdActions from '../../actions/employeeId.actions';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+import {CountriesService} from '../../services/countries.service';
 import {DialogService} from '../../services/dialog.service';
 import {MinAgeValidator} from './min-age.validator';
 
@@ -32,11 +34,11 @@ export class NewEmployeeComponent implements OnInit {
   onSubmit() {
     this.store.dispatch(new EmployeeIdActions.IncrementId());
     this.store.select('employeeId').subscribe(employee => this.newEmployeeId = employee);
-
     const newEmployee = Object.assign({}, this.employeeForm.value, {id: this.newEmployeeId});
     this.store.dispatch(new EmployeeActions.AddEmployee(newEmployee));
     this.submitted = true;
-    this.router.navigate(['/']);
+
+    this.gotoHomepage();
   }
 
   gotoHomepage() {

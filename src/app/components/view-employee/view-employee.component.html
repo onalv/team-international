@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="col-6">
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="jobTitle.value === 'Waitress' || jobTitle.value === 'Dining room manager'">
           <label for="tipRate" class="col-3">Tip rate</label>
           <div class="col-9">
             <input id="tipRate" type="text" class="form-control" placeholder="Tip rate" formControlName="tipRate" required>

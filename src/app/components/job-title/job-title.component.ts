@@ -29,6 +29,5 @@ export class JobTitleComponent implements OnInit, OnChanges {
 
   changeSelect(jobTitle) {
     this.inputChange.emit(jobTitle);
-    console.log(jobTitle);
   }
 }

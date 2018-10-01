@@ -10,5 +10,5 @@ export class DialogService {
     const confirmation = window.confirm(message || 'Do you want lo leave?');
 
     return of(confirmation);
-  };
+  }
 }

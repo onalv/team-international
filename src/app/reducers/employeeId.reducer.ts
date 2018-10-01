@@ -6,8 +6,6 @@ export function reducerId(state: number = initialState, action: EmployeeIdAction
   switch (action.type) {
     case EmployeeIdActions.INCREMENT_ID:
       return state + 1;
-    case EmployeeIdActions.DECREMENT_ID:
-      return state - 1;
     default:
       return state;
   }
