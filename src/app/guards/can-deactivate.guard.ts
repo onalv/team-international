@@ -14,7 +14,7 @@ export class CanDeactivateGuard implements CanDeactivate<NewEmployeeComponent> {
     component: NewEmployeeComponent,
   ): Observable<boolean> | boolean {
 
-    if (component.employeeForm.pristine === true) {
+    if (component.employeeForm.pristine === true || component.submitted === true) {
       return true;
     }
 

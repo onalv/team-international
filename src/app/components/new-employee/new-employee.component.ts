@@ -20,6 +20,7 @@ export class NewEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   countries: any[];
   newEmployeeId: number;
+  submitted = false;
 
   constructor(
     private store: Store<AppState>,
@@ -34,6 +35,7 @@ export class NewEmployeeComponent implements OnInit {
 
     const newEmployee = Object.assign({}, this.employeeForm.value, {id: this.newEmployeeId});
     this.store.dispatch(new EmployeeActions.AddEmployee(newEmployee));
+    this.submitted = true;
     this.router.navigate(['/']);
   }
 
@@ -68,7 +70,7 @@ export class NewEmployeeComponent implements OnInit {
       status: new FormControl(false),
       area: new FormControl('services'),
       jobTitle: new FormControl('', [Validators.required]),
-      tipRate: new FormControl('', [Validators.required]),
+      tipRate: new FormControl(''),
     });
   }
 
