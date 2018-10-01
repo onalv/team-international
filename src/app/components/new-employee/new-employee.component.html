@@ -37,7 +37,9 @@
               </div>
             </div>
             <div class="alert alert-danger mt-1" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty && dateOfBirth.touched)">
-              Please choose a date of birth.
+              <p *ngIf="dateOfBirth.invalid && !dateOfBirth.errors['required'] && !dateOfBirth.errors['minAge']">Please enter a valid date.</p>
+              <p *ngIf="dateOfBirth.errors['required']">Please choose a date of birth.</p>
+              <p *ngIf="dateOfBirth.errors['minAge']">Employee must be at least 18 years old.</p>
             </div>
           </div>
         </div>
@@ -87,7 +89,7 @@
         </div>
       </div>
       <div class="col-6">
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="jobTitle.value === 'Waitress' || jobTitle.value === 'Dining room manager'">
           <label for="tipRate" class="col-3">Tip rate</label>
           <div class="col-9">
             <input id="tipRate" type="text" class="form-control" placeholder="Tip rate" formControlName="tipRate" required>
@@ -114,10 +116,3 @@
     </div>
   </form>
 </div>
-
-
-{{ employeeForm.valid }} Valid
-<br>
-{{ employeeForm.pristine }} Pristine
-<br>
-{{ employeeForm.touched }} Touched

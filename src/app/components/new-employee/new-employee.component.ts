@@ -6,9 +6,9 @@ import {CountriesService} from '../../services/countries.service';
 
 import * as EmployeeActions from '../../actions/employee.actions';
 import * as EmployeeIdActions from '../../actions/employeeId.actions';
-// import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DialogService} from '../../services/dialog.service';
+import {MinAgeValidator} from './min-age.validator';
 
 @Component({
   selector: 'app-new-employee',
@@ -20,9 +20,6 @@ export class NewEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   countries: any[];
   newEmployeeId: number;
-  // area = 'kitchen'; true for area "Services" and false when area is Kitchen
-  // dateOfBirth: NgbDateStruct;
-  // hireDate: NgbDateStruct;
 
   constructor(
     private store: Store<AppState>,
@@ -37,8 +34,6 @@ export class NewEmployeeComponent implements OnInit {
 
     const newEmployee = Object.assign({}, this.employeeForm.value, {id: this.newEmployeeId});
     this.store.dispatch(new EmployeeActions.AddEmployee(newEmployee));
-    // console.log(this.employeeForm.value);
-    // console.log(this.newEmployeeId);
     this.router.navigate(['/']);
   }
 
@@ -62,7 +57,9 @@ export class NewEmployeeComponent implements OnInit {
 
     this.employeeForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      dateOfBirth: new FormControl('', [Validators.required]),
+      dateOfBirth: new FormControl('', [
+        MinAgeValidator.validDateOfBirth,
+        Validators.required]),
       country: new FormControl({}, [Validators.required]),
       userName: new FormControl('', [Validators.required]),
       hireDate: new FormControl('', [Validators.required]),
