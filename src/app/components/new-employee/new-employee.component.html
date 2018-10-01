@@ -19,7 +19,8 @@
           <div class="col-9">
             <input id="userName" type="text" class="form-control" placeholder="Username" formControlName="userName" required>
             <div class="alert alert-danger mt-1" *ngIf="userName.invalid && (userName.dirty && userName.touched)">
-              Please choose a username.
+              <p *ngIf="userName.errors['required']">Please choose a username.</p>
+              <p *ngIf="userName.errors['pattern']">Username can't include special characters.</p>
             </div>
           </div>
         </div>

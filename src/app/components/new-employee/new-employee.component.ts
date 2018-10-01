@@ -61,7 +61,9 @@ export class NewEmployeeComponent implements OnInit {
         MinAgeValidator.validDateOfBirth,
         Validators.required]),
       country: new FormControl({}, [Validators.required]),
-      userName: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9]*')]),
       hireDate: new FormControl('', [Validators.required]),
       status: new FormControl(false),
       area: new FormControl('services'),
